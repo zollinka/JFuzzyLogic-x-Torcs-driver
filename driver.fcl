@@ -1,0 +1,298 @@
+FUNCTION_BLOCK driver
+
+VAR_INPUT
+	angle : REAL;
+	opponent0 : REAL;
+	opponent1 : REAL;
+	opponent10 : REAL;
+	opponent11 : REAL;
+	opponent12 : REAL;
+	opponent13 : REAL;
+	opponent14 : REAL;
+	opponent15 : REAL;
+	opponent16 : REAL;
+	opponent17 : REAL;
+	opponent18 : REAL;
+	opponent19 : REAL;
+	opponent2 : REAL;
+	opponent20 : REAL;
+	opponent21 : REAL;
+	opponent22 : REAL;
+	opponent23 : REAL;
+	opponent24 : REAL;
+	opponent25 : REAL;
+	opponent26 : REAL;
+	opponent27 : REAL;
+	opponent28 : REAL;
+	opponent29 : REAL;
+	opponent3 : REAL;
+	opponent30 : REAL;
+	opponent31 : REAL;
+	opponent32 : REAL;
+	opponent33 : REAL;
+	opponent34 : REAL;
+	opponent35 : REAL;
+	opponent4 : REAL;
+	opponent5 : REAL;
+	opponent6 : REAL;
+	opponent7 : REAL;
+	opponent8 : REAL;
+	opponent9 : REAL;
+	speed : REAL;
+	track0 : REAL;
+	track1 : REAL;
+	track10 : REAL;
+	track11 : REAL;
+	track12 : REAL;
+	track13 : REAL;
+	track14 : REAL;
+	track15 : REAL;
+	track16 : REAL;
+	track17 : REAL;
+	track18 : REAL;
+	track2 : REAL;
+	track3 : REAL;
+	track4 : REAL;
+	track5 : REAL;
+	track6 : REAL;
+	track7 : REAL;
+	track8 : REAL;
+	track9 : REAL;
+	trackPos : REAL;
+END_VAR
+
+VAR_OUTPUT
+	accelerate : REAL;
+	brake : REAL;
+	steering : REAL;
+END_VAR
+
+FUZZIFY angle
+END_FUZZIFY
+
+FUZZIFY opponent0
+END_FUZZIFY
+
+FUZZIFY opponent1
+END_FUZZIFY
+
+FUZZIFY opponent10
+END_FUZZIFY
+
+FUZZIFY opponent11
+END_FUZZIFY
+
+FUZZIFY opponent12
+END_FUZZIFY
+
+FUZZIFY opponent13
+END_FUZZIFY
+
+FUZZIFY opponent14
+END_FUZZIFY
+
+FUZZIFY opponent15
+END_FUZZIFY
+
+FUZZIFY opponent16
+END_FUZZIFY
+
+FUZZIFY opponent17
+END_FUZZIFY
+
+FUZZIFY opponent18
+END_FUZZIFY
+
+FUZZIFY opponent19
+END_FUZZIFY
+
+FUZZIFY opponent2
+END_FUZZIFY
+
+FUZZIFY opponent20
+END_FUZZIFY
+
+FUZZIFY opponent21
+END_FUZZIFY
+
+FUZZIFY opponent22
+END_FUZZIFY
+
+FUZZIFY opponent23
+END_FUZZIFY
+
+FUZZIFY opponent24
+END_FUZZIFY
+
+FUZZIFY opponent25
+END_FUZZIFY
+
+FUZZIFY opponent26
+END_FUZZIFY
+
+FUZZIFY opponent27
+END_FUZZIFY
+
+FUZZIFY opponent28
+END_FUZZIFY
+
+FUZZIFY opponent29
+END_FUZZIFY
+
+FUZZIFY opponent3
+END_FUZZIFY
+
+FUZZIFY opponent30
+END_FUZZIFY
+
+FUZZIFY opponent31
+END_FUZZIFY
+
+FUZZIFY opponent32
+END_FUZZIFY
+
+FUZZIFY opponent33
+END_FUZZIFY
+
+FUZZIFY opponent34
+END_FUZZIFY
+
+FUZZIFY opponent35
+END_FUZZIFY
+
+FUZZIFY opponent4
+END_FUZZIFY
+
+FUZZIFY opponent5
+END_FUZZIFY
+
+FUZZIFY opponent6
+END_FUZZIFY
+
+FUZZIFY opponent7
+END_FUZZIFY
+
+FUZZIFY opponent8
+END_FUZZIFY
+
+FUZZIFY opponent9
+END_FUZZIFY
+
+FUZZIFY speed
+	TERM f_very_fast :=  (190.0, 1.0E-6) (202.0, 0.89) (300.0, 1.0) ;
+END_FUZZIFY
+
+FUZZIFY track0
+END_FUZZIFY
+
+FUZZIFY track1
+END_FUZZIFY
+
+FUZZIFY track10
+	TERM far :=  (49.85, 0.0) (59.8, 0.5) (60, 1.0) (200.0, 1.0) ;
+	TERM just_right :=  (39.999999, 0.0) (40.0, 1.0) (40.000001, 0.0) ;
+	TERM near :=  (10.0, 0.0) (20.0, 1.0) (30.0, 1.0) (40.0, 0.0) ;
+END_FUZZIFY
+
+FUZZIFY track11
+	TERM near :=  (6.0, 0.0) (8.0, 0.3) (9.0, 0.0) ;
+END_FUZZIFY
+
+FUZZIFY track12
+END_FUZZIFY
+
+FUZZIFY track13
+END_FUZZIFY
+
+FUZZIFY track14
+END_FUZZIFY
+
+FUZZIFY track15
+END_FUZZIFY
+
+FUZZIFY track16
+END_FUZZIFY
+
+FUZZIFY track17
+END_FUZZIFY
+
+FUZZIFY track18
+END_FUZZIFY
+
+FUZZIFY track2
+END_FUZZIFY
+
+FUZZIFY track3
+END_FUZZIFY
+
+FUZZIFY track4
+END_FUZZIFY
+
+FUZZIFY track5
+END_FUZZIFY
+
+FUZZIFY track6
+END_FUZZIFY
+
+FUZZIFY track7
+	TERM near :=  (6.0, 0.0) (8.0, 0.3) (9.0, 0.0) ;
+END_FUZZIFY
+
+FUZZIFY track8
+	TERM far :=  (54.8, 0.45) (55.3, 0.35) (61.2, 1.0) (200.0, 1.0) ;
+	TERM just_right :=  (39.999999, 0.0) (40.0, 1.0) (40.000001, 0.0) ;
+	TERM near :=  (0.0, 0.0) (10.0, 1.0) (30.0, 0.0) ;
+END_FUZZIFY
+
+FUZZIFY track9
+	TERM far :=  (0.0, 0.0) (5.0, 0.18) (39.82, 0.02) (200.0, 1.0) ;
+	TERM near :=  (-0.001, 0.0) (0.0, 1.0) (20.0, 0.96) (40.0, 0.0) ;
+	TERM outside :=  (-1.0, 0.999) (-0.001, 1.0) (0.0, 0.0) ;
+END_FUZZIFY
+
+FUZZIFY trackPos
+	TERM left_outside :=  (-100.0, 1.0) (-3.001, 1.0) (-1.0, 0.198) ;
+	TERM right_outside :=  (1.0, 0.0) (3.0001, 1.0) (100.0, 1.0) ;
+END_FUZZIFY
+
+DEFUZZIFY accelerate
+	TERM fullgas :=  (0.495, 5.8E-4) (0.50, 0.998) (1.0, 1.0) ;
+	TERM medgas :=  (0.004, 4.96E-4) (0.1, 0.37) (0.5, 9.9E-4) ;
+	TERM nogas :=  (5.0E-8, 0.999) (0.05, 0.0) ;
+	METHOD : RM;
+	DEFAULT := 1.0;
+	RANGE := (0.0 .. 1.0);
+END_DEFUZZIFY
+
+DEFUZZIFY brake
+	TERM fullbrake :=  (0.035, 0.0) (0.102895, 1.0) (1.0, 1.0) ;
+	TERM nobrake :=  (0.0, 1.0) (0.035, 0.0) ;
+	METHOD : LM;
+	DEFAULT := 0.0;
+	RANGE := (0.0 .. 1.0);
+END_DEFUZZIFY
+
+DEFUZZIFY steering
+	TERM stay_center :=  (-0.1, 0.0) (0.0, 1.0) (0.1, 0.0) ;
+	TERM turn_left :=  (0.002, 0.0) (0.5, 1.0) (1.0, 1.0) ;
+	TERM turn_right :=  (-1.0, 1.0) (-0.501, 0.99) (0.0, 0.0) ;
+	METHOD : COG;
+	DEFAULT := 0.0;
+	RANGE := (-1.0 .. 1.0);
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	ACT : PROD;
+	ACCU : MAX;
+	OR: MAX;
+	RULE 1 : IF (track9 IS far) AND (speed  IS NOT f_very_fast) THEN accelerate IS fullgas WITH 0.99;
+	RULE 2 : IF (track9 IS far) AND (speed IS f_very_fast) THEN accelerate IS medgas WITH 0.1;
+	RULE 3 : IF track8 IS far THEN steering IS turn_left WITH 0.92;
+	RULE 4 : IF track10 IS far THEN steering IS turn_right;
+	RULE 5 : IF trackPos IS left_outside THEN steering IS turn_right;
+	RULE 6 : IF trackPos IS right_outside THEN steering IS turn_left;
+	RULE 7 : IF (track11 IS near) OR (track7 IS near) THEN brake IS fullbrake WITH 0.1;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
